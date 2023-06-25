@@ -8,20 +8,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-
 class InventoryController extends Controller
 {
     public function index()
     {
-        $inventories = Inventory::all();
-        return view('inventory.index', compact('inventories'));
+        // $inventories = Inventory::all();
+        $inventories = Inventory::with('warehouse')->get();
+        return view('features.inventory.index', compact('inventories'));
     }
 
     public function create(Request $request)
     {
         $warehouses = Warehouse::all();
         $selected_warehouse_id = $request->selected_warehouse_id;
-        return view('inventory.create', compact('warehouses', 'selected_warehouse_id'));
+        return view('features.inventory.create', compact('warehouses', 'selected_warehouse_id'));
     }
 
     public function store(Request $request)
@@ -47,13 +47,13 @@ class InventoryController extends Controller
     public function show(Inventory $inventory)
     {
         $inventory = Inventory::findOrFail($inventory->id);
-        return view('inventory.show', compact('inventory'));
+        return view('features.inventory.show', compact('inventory'));
     }
 
     public function edit(Inventory $inventory)
     {
         $warehouses = Warehouse::all();
-        return view('inventory.edit', compact('inventory', 'warehouses'));
+        return view('features.inventory.edit', compact('inventory', 'warehouses'));
     }
 
     public function update(Request $request, Inventory $inventory)
@@ -75,5 +75,11 @@ class InventoryController extends Controller
     {
         Inventory::destroy($inventory->id);
         return redirect('inventory')->with('warning', 'Data berhasil dihapus');
+    }
+
+    public function print()
+    {
+        $inventories = Inventory::with('warehouse')->get();
+        return view('features.print.inventories', compact('inventories'));
     }
 }

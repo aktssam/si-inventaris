@@ -14,7 +14,7 @@ class WarehouseController extends Controller
     public function index()
     {
         $warehouses = Warehouse::all();
-        return view('warehouse.index', compact('warehouses'));
+        return view('features.warehouse.index', compact('warehouses'));
     }
 
     /**
@@ -22,7 +22,7 @@ class WarehouseController extends Controller
      */
     public function create()
     {
-        return view('warehouse.create');
+        return view('features.warehouse.create');
     }
 
     /**
@@ -46,7 +46,28 @@ class WarehouseController extends Controller
     public function show(Warehouse $warehouse)
     {
         $warehouse = Warehouse::findOrFail($warehouse->id);
-        return view('warehouse.show', compact('warehouse'));
+        $inventories = $warehouse->inventories->load('warehouse');
+        return view('features.warehouse.show', compact('warehouse', 'inventories'));
+    }
+
+    public function printAll()
+    {
+        $warehouses = Warehouse::all();
+        return view('features.print.warehouses', compact('warehouses'));
+    }
+
+    public function print(Warehouse $warehouse)
+    {
+        $warehouse = Warehouse::findOrFail($warehouse->id);
+        $inventories = $warehouse->inventories->load('warehouse');
+        return view('features.print.warehouse', compact('warehouse', 'inventories'));
+    }
+
+    public function printModal(Request $request)
+    {
+        $warehouse = Warehouse::findOrFail($request->warehouse_id ?? 1);
+        $inventories = $warehouse->inventories->load('warehouse');
+        return redirect(route('print.warehouse', compact('warehouse')));
     }
 
     /**

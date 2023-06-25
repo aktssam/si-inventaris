@@ -34,22 +34,37 @@
         <div data-i18n="Tables">Data Inventaris</div>
       </a>
     </li>
+
     <li class="menu-item {{ request()->is('warehouse*') ? 'active' : '' }}">
       <a href="{{ route('warehouse.index') }}" class="menu-link">
         <i class="menu-icon tf-icons bx bx-home"></i>
         <div data-i18n="Tables">Data Gudang</div>
       </a>
     </li>
-    {{-- <li class="menu-item {{ request()->is('inventory*') ? 'active' : '' }}">
-      <a href="{{ route('inventory.index') }}" class="menu-link">
-        <i class="menu-icon tf-icons bx bx-data"></i>
-        <div data-i18n="Tables">Data Unit</div>
-      </a>
-    </li> --}}
+
     <li class="menu-item {{ request()->is('history*') ? 'active' : '' }}">
       <a href="{{ route('history.index') }}" class="menu-link">
         <i class="menu-icon tf-icons bx bx-history"></i>
         <div data-i18n="Tables">History</div>
+      </a>
+    </li>
+
+    <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Utils</span>
+    </li>
+
+    <!-- Tables -->
+    <li class="menu-item {{ request()->is('print*') ? 'active' : '' }}">
+      <a href="{{ route('dashboard.print') }}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-export"></i>
+        <div data-i18n="Tables">Export & Print</div>
+      </a>
+    </li>
+
+    <li class="menu-item {{ request()->is('scanner*') ? 'active' : '' }}">
+      <a href="{{ route('dashboard.scanner') }}" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-qr"></i>
+        <div data-i18n="Tables">QR Scanner</div>
       </a>
     </li>
 

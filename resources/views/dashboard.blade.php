@@ -91,7 +91,7 @@
           </div>
           <span class="d-block">QR code</span>
           <h3 class="card-title text-nowrap my-1">
-            <a href="#" class="btn btn-sm btn-success">Scan now</a>
+            <a href="{{ route('dashboard.scanner') }}" class="btn btn-sm btn-success">Scan now</a>
           </h3>
         </div>
       </div>

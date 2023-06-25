@@ -14,4 +14,10 @@ class DashboardController extends Controller
         $warehouses = Warehouse::all();
         return view('dashboard', compact('inventories', 'warehouses'));
     }
+
+    public function print()
+    {
+        $warehouses = Warehouse::all();
+        return view('features.print.index', compact('warehouses'));
+    }
 }
