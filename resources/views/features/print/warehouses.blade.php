@@ -10,9 +10,8 @@
 
     <h3 class="h3 fw-medium text-md-start mb-2">{{ $loop->index + 1 }}. {{ $warehouse->name }}</h3>
     <p class="fs-6 mb-1">Jumlah aset: {{ $inventories->count() ?? 0 }}</h3>
-    <p class="fs-6 mb-3">Terakhir diubah pada: {{ $warehouse->updated_at }}</h3>
     <div class="table table-responsive text-nowrap mb-52">
-      <table class="table table-striped">
+      <table class="table table-bordered">
         <thead>
           <tr>
             <th>#</th>

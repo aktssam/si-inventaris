@@ -3,15 +3,16 @@
 @section('title', 'Data Inventaris')
 
 @section('content')
+  <h3 class="text-center mb-5">Laporan Data Aset Inventori</h3>
   <div class="table table-responsive text-nowrap">
-    <table class="table table-striped">
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th>#</th>
           <th>Nama</th>
           <th>Gudang</th>
+          <th>Status</th>
           <th>Tanggal Masuk</th>
-          <th>Harga</th>
           <th>QR</th>
         </tr>
       </thead>
@@ -21,8 +22,8 @@
             <td>{{ $loop->index + 1 }}</td>
             <td>{{ $inventory->name }}</td>
             <td>{{ $inventory->warehouse->name }}</td>
-            <td>{{ $inventory->updated_at->format('d M Y') }}</td>
-            <td>Rp{{ $inventory->price ?? 0 }}</td>
+            <td>{{ $inventory->status }}</td>
+            <td>{{ $inventory->check_in }}</td>
             <td>{{ QrCode::size(50)->generate("inventory/$inventory->id") }}</td>
           </tr>
         @endforeach

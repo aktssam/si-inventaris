@@ -15,11 +15,19 @@
 <body>
   <div class="container-xl mt-4">
     <div class="row border-bottom mb-3">
-      <h2 class="h3 fw-bold mb-1 text-center text-uppercase">Laporan data inventori</h2>
-      <p class="h6 mb-3 text-center">{{ Date::now() }}</p>
+      <h2 class="h3 fw-bold mb-1 text-center text-uppercase">PT. LEEWON INDUSTRIAL</h2>
+      <p class="h6 fw-bold mb-1 text-center text-uppercase">Jl. Stasiun Indro, Ds. Sidorukun - Gresik 61112</p>
+      <p class="h6 fw-bold mb-3 text-center text-uppercase">Jawa Timur - Indonesia</p>
     </div>
 
-    @yield('content')
+    <div class="content-wrapper">
+      @yield('content')
+
+      <footer class="content-footer footer">
+        <p class="mt-3 mb-0">Dibuat pada:</p>
+        <p>Gresik, {{ Date::now() }}</p>
+      </footer>
+    </div>
 
   </div>
 

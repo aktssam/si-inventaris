@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Conditions;
 use App\Models\Inventory;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
@@ -12,7 +13,6 @@ class InventoryController extends Controller
 {
     public function index()
     {
-        // $inventories = Inventory::all();
         $inventories = Inventory::with('warehouse')->get();
         return view('features.inventory.index', compact('inventories'));
     }
@@ -46,8 +46,9 @@ class InventoryController extends Controller
 
     public function show(Inventory $inventory)
     {
-        $inventory = Inventory::findOrFail($inventory->id);
-        return view('features.inventory.show', compact('inventory'));
+        // $inventory = Inventory::findOrFail($inventory->id);
+        $conditions = Conditions::where('inventory_id', $inventory->id)->latest()->get();
+        return view('features.inventory.show', compact('inventory', 'conditions'));
     }
 
     public function edit(Inventory $inventory)
@@ -61,25 +62,35 @@ class InventoryController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3|max:255',
             'warehouse_id' => 'required',
+            'status' => 'required'
         ]);
 
         if ($validator->fails()) return back()->with('error', $validator)->withInput();
 
         $validated = $validator->validated();
 
-        Inventory::findOrFail($inventory->id)->update($validated);
-        return redirect('inventory')->with('success', 'Berhasil mengubah data');
+        // Inventory::findOrFail($inventory->id)->update($validated);
+        $inventory->update($validated);
+        return redirect()->route('inventory.show', compact('inventory'))->with('success', 'Berhasil mengubah data');
     }
 
     public function destroy(Inventory $inventory)
     {
-        Inventory::destroy($inventory->id);
+        // Inventory::destroy($inventory->id);
+        $inventory->conditions()->delete();
+        $inventory->delete();
         return redirect('inventory')->with('warning', 'Data berhasil dihapus');
     }
 
-    public function print()
+    public function printAll()
     {
         $inventories = Inventory::with('warehouse')->get();
         return view('features.print.inventories', compact('inventories'));
+    }
+
+    public function print(Inventory $inventory)
+    {
+        $inventory = Inventory::findOrFail($inventory->id);
+        return view('features.print.inventory', compact('inventory'));
     }
 }

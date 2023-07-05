@@ -37,7 +37,7 @@
           &nbsp; Tambah data
         </a>
 
-        <a class="btn btn-outline-primary" href="{{ route('print.inventory') }}" target="_blank">
+        <a class="btn btn-outline-primary" href="{{ route('print.inventory.all') }}" target="_blank">
           <span><i class="menu-icon tf-icons bx bx-printer"></i></span>
           Cetak PDF
         </a>

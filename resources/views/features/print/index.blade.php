@@ -12,7 +12,7 @@
         <div class="card-body">
           <div class="card-title d-flex align-items-start justify-content-between">
             <div class="avatar flex-shrink-0">
-              <a href="{{ route('print.inventory') }}">
+              <a href="{{ route('print.inventory.all') }}" target="_blank">
                 <span class="avatar-initial rounded bg-label-primary">
                   <i class="bx bx-printer"></i>
                 </span>
@@ -68,7 +68,7 @@
                 <a class="btn btn-outline-secondary" data-bs-dismiss="modal">
                   Close
                 </a>
-                <button type="submit" class="btn btn-primary">Cetak</button>
+                <button type="submit" class="btn btn-primary" target="_blank">Cetak</button>
               </div>
             </form>
           </div>
@@ -82,7 +82,7 @@
         <div class="card-body">
           <div class="card-title d-flex align-items-start justify-content-between">
             <div class="avatar flex-shrink-0">
-              <a href="{{ route('print.warehouse.all') }}">
+              <a href="{{ route('print.warehouse.all') }}" target="_blank">
                 <span class="avatar-initial rounded bg-label-primary">
                   <i class="bx bx-printer"></i>
                 </span>

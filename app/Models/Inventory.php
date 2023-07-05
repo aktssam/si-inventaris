@@ -15,4 +15,9 @@ class Inventory extends Model
     {
         return $this->belongsTo(Warehouse::class);
     }
+
+    public function conditions()
+    {
+        return $this->hasMany(Conditions::class);
+    }
 }
