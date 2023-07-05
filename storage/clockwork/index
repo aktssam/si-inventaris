@@ -279,3 +279,13 @@
 1688525039-3479-1902302281,1688525039.1786,GET,/inventory/1,"App\Http\Controllers\InventoryController@show",200,386.85512542725,request
 1688525047-3774-86731358,1688525047.1892,PUT,/inventory/1,"App\Http\Controllers\InventoryController@update",302,432.12985992432,request
 1688525047-7964-438520175,1688525047.6334,GET,/inventory/1,"App\Http\Controllers\InventoryController@show",200,372.43700027466,request
+1688543481-0225-2108021257,1688543480.149,GET,/,"App\Http\Controllers\AuthController@check",302,2141.7500972748,request
+1688543482-8239-404802718,1688543482.3594,GET,/login,"App\Http\Controllers\AuthController@login",200,841.21084213257,request
+1688543488-1089-752477363,1688543487.8644,POST,/login,"App\Http\Controllers\AuthController@attempt",302,782.35006332397,request
+1688543488-9305-972467844,1688543488.6674,GET,/dashboard,"App\Http\Controllers\DashboardController@index",200,639.08815383911,request
+1688543493-5332-57687670,1688543493.3552,GET,/inventory,"App\Http\Controllers\InventoryController@index",200,424.50022697449,request
+1688543495-7458-148578153,1688543495.5733,GET,/inventory/1,"App\Http\Controllers\InventoryController@show",200,533.66899490356,request
+1688544071-0476-49560446,1688544070.8294,GET,/warehouse,"App\Http\Controllers\WarehouseController@index",200,833.78314971924,request
+1688544073-8881-164944243,1688544073.7162,GET,/warehouse/2,"App\Http\Controllers\WarehouseController@show",200,375.39196014404,request
+1688544077-3001-1362482238,1688544077.1299,GET,/inventory/9,"App\Http\Controllers\InventoryController@show",200,389.57095146179,request
+1688544096-3570-1491330968,1688544096.104,GET,/inventory/9/print,"App\Http\Controllers\InventoryController@print",200,522.05204963684,request

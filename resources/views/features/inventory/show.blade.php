@@ -50,7 +50,7 @@
               <tr>
                 <td><strong>Status</strong></td>
                 <td>
-                  <button data-bs-toggle="modal" data-bs-target="#modalCenter"
+                  <button data-bs-toggle="modal" data-bs-target="#modalStatus"
                     class="badge
                     @if ($inventory->status == 'unprocess') bg-secondary
                     @elseif ($inventory->status == 'delay') bg-warning
@@ -67,11 +67,11 @@
               </tr>
             </tbody>
           </table>
-          <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+          <div class="modal fade" id="modalStatus" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="modalCenterTitle">Set status</h5>
+                  <h5 class="modal-title" id="modalStatusTitle">Set status</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('inventory.update', $inventory) }}" method="post">
@@ -141,15 +141,15 @@
   <div class="card mb-4 px-3 py-3">
     <div class="card-header py-3">
       <h3 class="card-title mb-0">Kondisi aset</h3>
-      <button class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#modalCenter">
+      <button class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#modalKondisi">
         <i class="tf-icons bx bx-plus-circle"></i>
         &nbsp; Tambah kondisi
       </button>
-      <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+      <div class="modal fade" id="modalKondisi" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="modalCenterTitle">Tambah Kondisi</h5>
+              <h5 class="modal-title" id="modalKondisiTitle">Tambah Kondisi</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('conditions.store') }}" method="post">
