@@ -52,6 +52,7 @@
             <th>#</th>
             <th>Nama</th>
             <th>Gudang</th>
+            <th>Status</th>
             <th class="d-flex justify-content-end">Opsi</th>
           </tr>
         </thead>
@@ -61,6 +62,15 @@
               <td>{{ $loop->index + 1 }}</td>
               <td><a href="{{ route('inventory.show', $inventory) }}"><strong>{{ $inventory->name }}</strong></a></td>
               <td>{{ $inventory->warehouse->name }}</td>
+              <td><span
+                  class="badge
+                    @if ($inventory->status == 'unprocess') bg-secondary
+                    @elseif ($inventory->status == 'delay') bg-warning
+                    @elseif ($inventory->status == 'done') bg-success
+                    @else bg-primary @endif
+                ">
+                  {{ $inventory->status }}
+                </span></td>
               <td>
                 <div class="d-flex justify-content-end">
                   <a class="btn btn-sm btn-outline-primary me-2" href="{{ route('inventory.edit', $inventory) }}"><i
