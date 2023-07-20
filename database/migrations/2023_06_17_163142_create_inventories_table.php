@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('status')->default('unprocess');
             $table->foreignId('warehouse_id')->constrained();
             $table->dateTime('check_in')->default(Date::now());
+            $table->dateTime('check_out')->nullable();
             $table->timestamps();
         });
     }

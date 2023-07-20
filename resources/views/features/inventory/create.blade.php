@@ -38,8 +38,20 @@
 
             </div>
             <div class="mb-3">
-              <label class="form-label" for="price">Harga (opsional)</label>
-              <input type="text" class="form-control" id="price" name="price" placeholder="" autofocus />
+              <label class="form-label" for="check_in">Tanggal Masuk <span class="text-info">(nilai default
+                  sekarang)</b></label>
+              <input type="datetime-local" class="form-control" id="check_in" name="check_in" placeholder="" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="check_out">Tanggal Pengambilan <span class="text-info">(opsional)</b></label>
+              <input type="datetime-local" class="form-control" id="check_out" name="check_out" placeholder="" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="price">Harga <span class="text-info">(opsional)</b></label>
+              <div class="input-group">
+                <span class="input-group-text">Rp</span>
+                <input type="number" class="form-control" id="price" name="price" placeholder="" autofocus />
+              </div>
             </div>
 
             <button type="submit" class="btn btn-primary">Tambah</button>

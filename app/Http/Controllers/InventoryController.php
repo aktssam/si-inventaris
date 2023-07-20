@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Conditions;
 use App\Models\Inventory;
 use App\Models\Warehouse;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -29,6 +30,9 @@ class InventoryController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3|max:255',
             'warehouse_id' => 'required',
+            'check_in' => 'nullable|date',
+            'check_out' => 'nullable|date',
+            'price' => 'nullable|numeric',
         ]);
 
         if ($validator->fails()) return back()->with('error', $validator)->withInput();
@@ -39,6 +43,9 @@ class InventoryController extends Controller
             'uid' => Str::random(10),
             'name' => $validated['name'],
             'warehouse_id' => $validated['warehouse_id'],
+            'check_in' => $validated['check_in'] ?? Date::now(),
+            'check_out' => $validated['check_out'],
+            'price' => $validated['price']
         ]);
 
         return redirect('inventory')->with('success', 'Berhasil menambahkan data');
@@ -46,7 +53,6 @@ class InventoryController extends Controller
 
     public function show(Inventory $inventory)
     {
-        // $inventory = Inventory::findOrFail($inventory->id);
         $conditions = Conditions::where('inventory_id', $inventory->id)->latest()->get();
         return view('features.inventory.show', compact('inventory', 'conditions'));
     }
@@ -62,6 +68,9 @@ class InventoryController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3|max:255',
             'warehouse_id' => 'required',
+            'price' => 'nullable|numeric',
+            'check_in' => 'nullable|date',
+            'check_out' => 'nullable|date',
             'status' => 'required'
         ]);
 
@@ -69,14 +78,12 @@ class InventoryController extends Controller
 
         $validated = $validator->validated();
 
-        // Inventory::findOrFail($inventory->id)->update($validated);
         $inventory->update($validated);
         return redirect()->route('inventory.show', compact('inventory'))->with('success', 'Berhasil mengubah data');
     }
 
     public function destroy(Inventory $inventory)
     {
-        // Inventory::destroy($inventory->id);
         $inventory->conditions()->delete();
         $inventory->delete();
         return redirect('inventory')->with('warning', 'Data berhasil dihapus');

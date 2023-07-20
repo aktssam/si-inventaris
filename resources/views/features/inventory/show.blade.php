@@ -48,6 +48,10 @@
                 <td>{{ $inventory->check_in }}</td>
               </tr>
               <tr>
+                <td><strong>Tgl pengambilan</strong></td>
+                <td>{{ $inventory->check_out ?? '-' }}</td>
+              </tr>
+              <tr>
                 <td><strong>Status</strong></td>
                 <td>
                   <button data-bs-toggle="modal" data-bs-target="#modalStatus"
@@ -63,7 +67,7 @@
               </tr>
               <tr>
                 <td><strong>Harga</strong></td>
-                <td>Rp{{ $inventory->price ?? 0 }}</td>
+                <td>Rp{{ $inventory->price ?? '-' }}</td>
               </tr>
             </tbody>
           </table>
