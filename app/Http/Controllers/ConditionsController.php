@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Conditions;
+use App\Models\History;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ConditionsController extends Controller
@@ -38,9 +40,15 @@ class ConditionsController extends Controller
 
         $validated = $validator->validated();
 
-        Conditions::create([
+        $condition = Conditions::create([
             'description' => $validated['description'],
             'inventory_id' => $validated['inventory_id'],
+        ]);
+
+        History::create([
+            'description' => "{$condition->description} pada {$condition->inventory->name}",
+            'redirect_link' => "inventory/{$condition->inventory->id}",
+            'user_id' => Auth::user()->id
         ]);
 
         return redirect()->back();

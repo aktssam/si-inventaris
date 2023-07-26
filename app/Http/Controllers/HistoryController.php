@@ -12,7 +12,8 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        return view('features.history.index');
+        $histories = History::latest()->get();
+        return view('features.history.index', compact('histories'));
     }
 
     /**
@@ -60,6 +61,13 @@ class HistoryController extends Controller
      */
     public function destroy(History $history)
     {
-        //
+        $history->delete();
+        return redirect()->route('history.index');
+    }
+
+    public function deleteAll()
+    {
+        History::truncate();
+        return redirect()->route('history.index');
     }
 }

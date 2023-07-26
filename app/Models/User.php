@@ -13,4 +13,9 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $guarded = [];
+
+    public function histories()
+    {
+        return $this->hasMany(History::class);
+    }
 }

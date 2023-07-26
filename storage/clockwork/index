@@ -1,9 +1,0 @@
-1689835115-3511-979151138,1689835115.1387,GET,/scanner,"\Illuminate\Routing\ViewController",200,436.90204620361,request
-1689835155-9866-208812483,1689835155.8048,GET,/inventory,"App\Http\Controllers\InventoryController@index",200,383.42785835266,request
-1689835157-9567-2134261808,1689835157.7756,GET,/inventory/1,"App\Http\Controllers\InventoryController@show",200,415.22884368896,request
-1689835183-2612-387369959,1689835183.0741,GET,/scanner,"\Illuminate\Routing\ViewController",200,389.31107521057,request
-1689835209-0774-1797285204,1689835208.8915,GET,/inventory/1,"App\Http\Controllers\InventoryController@show",200,424.78609085083,request
-1689835220-3665-1932427551,1689835220.1836,GET,/scanner,"\Illuminate\Routing\ViewController",200,409.83080863953,request
-1689835264-1841-200650387,1689835263.8656,GET,/scanner,"\Illuminate\Routing\ViewController",200,692.04306602478,request
-1689835456-5446-174189478,1689835456.315,GET,/inventory/1,"App\Http\Controllers\InventoryController@show",200,640.49601554871,request
-1689835632-4327-1841372228,1689835632.1606,GET,/inventory/1/print,"App\Http\Controllers\InventoryController@print",200,552.53577232361,request

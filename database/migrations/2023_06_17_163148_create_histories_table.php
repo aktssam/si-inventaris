@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
-            $table->string('status')->nullable();
+            $table->text('description');
+            $table->string('redirect_link')->nullable();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

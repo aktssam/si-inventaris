@@ -9,6 +9,7 @@ use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\WarehouseController;
 use App\Models\Conditions;
+use App\Models\History;
 use App\Models\Warehouse;
 
 Route::get('/', [AuthController::class, 'check']);
@@ -26,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/warehouse/print', [WarehouseController::class, 'printAll'])->name('print.warehouse.all');
     Route::post('/warehouse/print', [WarehouseController::class, 'printModal'])->name('print.warehouse.modal');
     Route::get('/warehouse/{warehouse}/print', [WarehouseController::class, 'print'])->name('print.warehouse');
+    Route::delete('/history/delete/all', [HistoryController::class, 'deleteAll'])->name('history.delete.all');
 
     Route::resources([
         'inventory' => InventoryController::class,

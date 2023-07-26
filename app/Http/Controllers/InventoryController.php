@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Conditions;
+use App\Models\History;
 use App\Models\Inventory;
 use App\Models\Warehouse;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -79,6 +81,40 @@ class InventoryController extends Controller
         $validated = $validator->validated();
 
         $inventory->update($validated);
+
+        // ddd($inventory->getChanges());
+
+        if (sizeof($inventory->getChanges()) <= 3) {
+
+            if (array_key_exists('status', $inventory->getChanges()))
+                History::create([
+                    'description' => "status {$inventory->name} telah dirubah menjadi {$inventory->status}",
+                    'redirect_link' => "inventory/{$inventory->id}",
+                    'user_id' => Auth::user()->id
+                ]);
+
+            if (array_key_exists('price', $inventory->getChanges()))
+                History::create([
+                    'description' => "harga {$inventory->name} telah dirubah",
+                    'redirect_link' => "inventory/{$inventory->id}",
+                    'user_id' => Auth::user()->id
+                ]);
+
+            if (array_key_exists('warehouse_id', $inventory->getChanges()))
+                History::create([
+                    'description' => "aset {$inventory->name} telah dipindahkan ke {$inventory->warehouse->name}",
+                    'redirect_link' => "inventory/{$inventory->id}",
+                    'user_id' => Auth::user()->id
+                ]);
+        } else {
+            History::create([
+                'description' => "beberapa data {$inventory->name} telah dirubah",
+                'redirect_link' => "inventory/{$inventory->id}",
+                'user_id' => Auth::user()->id,
+            ]);
+        }
+
+
         return redirect()->route('inventory.show', compact('inventory'))->with('success', 'Berhasil mengubah data');
     }
 
