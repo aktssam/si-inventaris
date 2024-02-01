@@ -20,5 +20,34 @@ Website untuk pengelolaan data aset/inventaris sederhana CRUD
 
 #### Comming soon
 
-username: admin
-password: admin
+username & password: admin
+
+#### Local development
+
+- Download zip / clone repositori ini
+- Masuk ke direktori project
+  ```
+  cd ./si-inventaris
+  ```
+- Install dependesi
+  ```
+  composer install
+  ```
+- Setup environment
+  ```
+  cp .env.example .env
+  ```
+- Generate app_key
+  ```
+  php artisan key:generate
+  ```
+- Jalankan server MySQL database dan buat database baru dengan nama `inventory`
+- Migrate database
+  ```
+  php artisan migrate:fresh --seed
+  ```
+- Jalankan development server laravel
+  ```
+  php artisan serve
+  ```
+- username & password: admin
